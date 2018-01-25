@@ -1,0 +1,12 @@
+language: python
+python:
+  - "36"
+install:
+  - "pip install -r requirements.txt"
+  - "pip install coveralls"
+script:
+  - py.test -v --cov-report term-missing --cov=py-web -r w tests
+after_success:
+  - coveralls
+  - coverage xml
+  - python-codacy-coverage -r coverage.xml
